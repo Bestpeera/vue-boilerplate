@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import TempleInfo from '../components/TempleInfo.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <TempleInfo />
   </main>
 </template>
