@@ -4,69 +4,70 @@ export default {
   theme: {
     extend: {
       colors: {
-        neutral: {
-          1000: "#59461E", // Gold tint 1000
-          900: "#735A27", // Gold tint 900
-          800: "#997834", // Gold tint 800
-          700: "#BF9641", // Gold tint 700
-          600: "#CCA046", // Gold tint 600
-          500: "#E6B44E", // Gold tint 500
-          400: "#FFC857", // Gold tint 400
-          300: "#FFFECB", // Gold tint 300
-          200: "#FFFEF6", // Gold tint 200
-          100: "#FFF6EE", // Gold tint 100
-        },
         primary: {
-          1000: "#1A1628", // Deep purple tint 1000
-          900: "#1F2041", // Deep purple tint 900
-          800: "#2D2644", // Deep purple tint 800
-          700: "#1F2041", // Deep purple tint 700
-          600: "#3C325B", // Deep purple tint 600
-          500: "#443967", // Deep purple tint 500
-          400: "#4B3F72", // Deep purple tint 400
-          300: "#C7C3D3", // Deep purple tint 300
-          200: "#E4E2EA", // Deep purple tint 200
-          100: "#EDECF1", // Deep purple tint 100
+          400: "#FFC857", // Bright Yellow 400
         },
         secondary: {
-          1000: "#063739", // Green blue tint 1000
-          900: "#08474A", // Green blue tint 900
-          800: "#0A5E62", // Green blue tint 800
-          700: "#0D767B", // Green blue tint 700
-          600: "#0E7E83", // Green blue tint 600
-          500: "#0FB094", // Green blue tint 500
-          400: "#119DA4", // Green blue tint 400
-          300: "#85E1E3", // Green blue tint 300
-          200: "#DBF0F1", // Green blue tint 200
-          100: "#FFF6EE", // Green blue tint 100
+          400: "#4B3F72", // Deep Purple 400
+        },
+        tertiary: {
+          1000: "#119DA4", // Green Blue 1000
         },
         special: {
-          white: {
-            1000: "#FFFFFF",
+          white: "#FFFFFF", // White 1000
+          black: "#000000", // Black 1000
+          leaf: "#AFD079", // Leaf 1000
+          peach: "#E17990", // Peach 1000
+          grape: "#70619E", // Grape 1000
+          light: "#ECE9F7", // Light 50
+          sky: "#CEE8F8", // Sky 50
+          banana: "#FFFECE", // Banana 50
+          lime: "#E1EECD", // Lime 50
+          papaya: "#FFE5DD", // Papaya 50
+        },
+        text: {
+          1000: "#1A1628", // Text 1000
+          666: "#CDCCD0", // Text 666
+          333: "#E8E8E9", // Text 333
+        },
+        tint: {
+          yellow: {
+            1000: "#59461E",
+            900: "#735A27",
+            800: "#997834",
+            700: "#BF9641",
+            600: "#CCA046",
+            500: "#E6B44E",
+            400: "#FFC857",
+            375: "#FCCD9E",
+            350: "#FAE3B3",
+            300: "#FFEECB",
+            200: "#FFF7E6",
+            100: "#FFFAEE",
           },
-          black: {
-            1000: "#000000",
+          purple: {
+            1000: "#1A1628",
+            900: "#1F2041",
+            800: "#2D2644",
+            600: "#3C325B",
+            500: "#443967",
+            400: "#4B3F72",
+            350: "#E0DAF5",
+            300: "#C7C3D3",
+            200: "#E4E2EA",
+            100: "#EDECF1",
           },
-          leaf: {
-            1000: "#AFD079",
-          },
-          peach: {
-            1000: "#E17990",
-          },
-          grape: {
-            1000: "#70619E",
-          },
-          light: {
-            1000: "#ECE9F7",
-          },
-          sky: {
-            1000: "#CEE8F8",
-          },
-          banana: {
-            1000: "#FFFECE",
-          },
-          lime: {
-            1000: "#E1EECD",
+          green: {
+            1000: "#063739",
+            900: "#08474A",
+            800: "#0A5E62",
+            700: "#0D767B",
+            600: "#0E7E83",
+            500: "#0F8D94",
+            400: "#119DA4",
+            300: "#B5E1E3",
+            200: "#DBF0F1",
+            100: "#E7F5F6",
           },
         },
       },
