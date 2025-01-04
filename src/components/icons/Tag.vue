@@ -1,0 +1,32 @@
+<template>
+    <div
+        :class="['inline-flex items-center text-text-1000 rounded-full px-4 py-2 border-[1px] border-special-white', backgroundColor]">
+        <img :src="icon_img_url" alt="Icon" class="h-4 w-4 pr-1">
+        <span class="text-sm whitespace-nowrap">{{ text }}</span>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+import { PropType } from 'vue';
+
+// Define props
+const props = defineProps({
+    icon_img_url: {
+        type: String as PropType<string>,
+        required: true
+    },
+    text: {
+        type: String as PropType<string>,
+        required: true
+    },
+    bg_color: {
+        type: String as PropType<string>,
+        required: false,
+        default: 'bg-purple-350',
+    }
+});
+
+// Computed property for the background color
+const backgroundColor = computed(() => props.bg_color);
+</script>
