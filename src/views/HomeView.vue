@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TempleInfo from '../components/TempleInfo.vue'
+import TempleInfoView from '../views/TempleInfoView.vue'
 </script>
 
 <template>
   <main>
-    <TempleInfo />
+    <TempleInfoView />
   </main>
 </template>

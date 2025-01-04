@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GodBubble from '../components/GodBubble.vue'
-import StepNumber from './icons/StepNumber.vue';
+import StepNumber from '../components/icons/StepNumber.vue';
 </script>
 
 <template>
@@ -75,7 +75,7 @@ import StepNumber from './icons/StepNumber.vue';
             <div class="bg-special-white rounded-[20px] justify-center p-5">
                 <p class="font-semibold text-black">ขั้นตอนการไหว้ทั่วไป</p>
                 <ol class="list-decimal list-inside divide-y divide-text-333">
-                    <li class="inline-flex items-center space-x-2 py-2">
+                    <li class="inline-flex items-center space-x-2 py-2 w-full">
                         <StepNumber text="1" />
                         <div class="basis-11/12">
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -85,13 +85,13 @@ import StepNumber from './icons/StepNumber.vue';
                                 took a</p>
                         </div>
                     </li>
-                    <li class="inline-flex items-center space-x-2 py-2">
+                    <li class="inline-flex items-center space-x-2 py-2 w-full">
                         <StepNumber text="2" />
                         <div class="basis-11/12">
                             <p>ไหว้เทพเจ้าที่ทีกงด้วยธูป 5 ดอ</p>
                         </div>
                     </li>
-                    <li class="inline-flex items-center space-x-2 py-2">
+                    <li class="inline-flex items-center space-x-2 py-2 w-full">
                         <StepNumber text="1" />
                         <div class="basis-11/12">
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting

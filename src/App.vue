@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import MapView from './components/MapView.vue';
-import TempleInfo from './components/TempleInfo.vue';
+import TempleInfoView from './views/TempleInfoView.vue';
 
 // Reactive data for temples
 const templesData = ref([
@@ -11,7 +11,7 @@ const templesData = ref([
 </script>
 
 <template>
-  <TempleInfo />
+  <TempleInfoView />
 </template>
 
 <style scoped>
