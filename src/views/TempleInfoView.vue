@@ -14,11 +14,8 @@ import StepNumber from '../components/icons/StepNumber.vue';
 
         <!-- Image list -->
         <div class="flex-row flex overflow-x-auto space-x-4">
-            <img class="rounded-[14px]" src="/images/default_wide_image.jpg">
-            <img src="/images/default_wide_image.jpg">
-            <img src="/images/default_wide_image.jpg">
-            <img src="/images/default_wide_image.jpg">
-            <img src="/images/default_wide_image.jpg">
+            <img class="rounded-[14px]" src="/images/temple.jpg">
+            <img class="rounded-[14px]" src="/images/temple_2.jpg">
         </div>
 
         <!-- Contents -->
@@ -33,9 +30,7 @@ import StepNumber from '../components/icons/StepNumber.vue';
                     </div>
                 </div>
                 <div class="flex flex-row">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book.</p>
+                    <p>ขึ้นมาจาก MRT วัดมังกร ออกประตู 2</p>
                 </div>
             </div>
             <!-- History -->
@@ -48,9 +43,8 @@ import StepNumber from '../components/icons/StepNumber.vue';
                     </div>
                 </div>
                 <div class="flex flex-row">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book.</p>
+                    <p>ศาลหลีตี้เมี้ยวถูกสร้างขึ้นในช่วงที่มีการตั้งถิ่นฐานของชาวจีนในประเทศไทยเพื่อเป็นสถานที่เคารพบูชาเทพเจ้าหลี่ตี้เมี้ยวซึ่งเป็นเทพเจ้าที่เป็นที่รู้จักใน
+                        ด้านความโชคดีและความสำเร็จ</p>
                 </div>
             </div>
             <!-- Warnings -->
@@ -60,12 +54,7 @@ import StepNumber from '../components/icons/StepNumber.vue';
                     <li class="inline-flex items-center space-x-2">
                         <StepNumber text="1" />
                         <div class="basis-11/12 bg-special-papaya rounded-[20px] justify-center px-6 py-3">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry.
-                                Lorem Ipsum has
-                                been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                                took a
-                                galley of type and scrambled it to make a type specimen book.
+                            <p>ควรแต่งกายสุภาพ ปฏิบัติตามกฎระเบียบของศาลเจ้า และรักษาความสงบระหว่างการสักการะ
                             </p>
                         </div>
                     </li>
@@ -78,11 +67,7 @@ import StepNumber from '../components/icons/StepNumber.vue';
                     <li class="inline-flex items-center space-x-2 py-2 w-full">
                         <StepNumber text="1" />
                         <div class="basis-11/12">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry.
-                                Lorem Ipsum has
-                                been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                                took a</p>
+                            <p>เตรียมดอกไม้ น้ำชา และพวงมาลัย</p>
                         </div>
                     </li>
                     <li class="inline-flex items-center space-x-2 py-2 w-full">
@@ -91,24 +76,14 @@ import StepNumber from '../components/icons/StepNumber.vue';
                             <p>ไหว้เทพเจ้าที่ทีกงด้วยธูป 5 ดอ</p>
                         </div>
                     </li>
-                    <li class="inline-flex items-center space-x-2 py-2 w-full">
-                        <StepNumber text="1" />
-                        <div class="basis-11/12">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry.
-                                Lorem Ipsum has
-                                been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                                took a</p>
-                        </div>
-                    </li>
                 </ol>
             </div>
             <!-- Tip -->
             <div class="bg-special-white rounded-[20px] justify-center p-5 space-y-2">
                 <p class="font-semibold text-black">เกร็ดเล็กน้อย</p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                    of type and scrambled it to make a type specimen book.</p>
+                <p>อย่าลืมเสี่ยงเซียมซียาโดยผู้ที่มีปัญหาสุขภาพจะ มาเสี่ยงทายดูจากนั้นนำเลขไปที่ตึกแผนกยาโดย
+                    แบ่งเป็นยาบุรุษยาสตรียากุมารทั้งหมดจะเป็นยาจีนอาแปะจะเป็นผู้อธิบายว่าทานอย่างไร(ไม่มีค่าใช้จ่ายผู้ที่ศรัทธาสามารถบริจาคตามกำลัง)
+                </p>
             </div>
             <!-- Gods -->
             <div class="bg-special-white rounded-[20px] justify-center p-5 space-y-7">
