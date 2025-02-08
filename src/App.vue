@@ -14,7 +14,8 @@ const templesData = ref([
 <template>
   <!-- <TempleInfoView /> -->
   <!-- <FilterView /> -->
-  <HomeView />
+  <!-- <HomeView /> -->
+  <router-view />
 </template>
 
 <style scoped>

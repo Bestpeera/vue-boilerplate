@@ -28,7 +28,7 @@
         <img class="w-full justify-center" src="/images/example_ads.png" />
       </div>
       <div v-if="temples.length > 0" class="flex flex-col gap-y-6">
-        <TempleList v-for="temple in temples" :key="temple.id" :temple_name="temple.thai_name"
+        <TempleList v-for="temple in temples" :key="temple.id" :temple_id="temple.id" :temple_name="temple.thai_name"
           :temple_image_url="temple.main_image_url" :distance="temple.distance" :tags="temple.tags" />
       </div>
       <div v-else>
@@ -60,6 +60,7 @@ const fetchTemples = async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data);
     temples.value = data;
   } catch (error) {
     console.error("Failed to fetch temples:", error);

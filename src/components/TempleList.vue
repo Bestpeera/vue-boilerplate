@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row gap-x-4">
+    <div class="flex flex-row gap-x-4" @click="goToTempleInfo()">
         <!-- Image Section -->
         <div class="basis-1/3 flex-shrink-0">
             <img class="rounded-[14px] w-full h-full" :src="temple_image_url" alt="Temple" />
@@ -23,10 +23,15 @@
 
 <script setup lang="ts">
 import Tag from '../components/icons/Tag.vue';
+import { useRouter } from "vue-router";
 import { onMounted, onBeforeUnmount, ref, defineProps } from "vue";
 
 // Define props for dynamic data
-defineProps({
+const props = defineProps({
+    temple_id: {
+        type: Number,
+        required: true
+    },
     temple_name: {
         type: String,
         required: true
@@ -49,6 +54,15 @@ defineProps({
 const tagsContainer = ref<HTMLDivElement | null>(null);
 const plusButton = ref<HTMLButtonElement | null>(null);
 const hiddenCount = ref<HTMLSpanElement | null>(null);
+
+// Router for navigation
+const router = useRouter();
+
+// Navigate to /temple_info with temple ID
+const goToTempleInfo = () => {
+    router.push({ path: `/temple_info/${props.temple_id}` });
+    // router.push({ path: `/temple_info` });
+};
 
 const adjustTags = () => {
     if (!tagsContainer.value || !plusButton.value || !hiddenCount.value) return;
