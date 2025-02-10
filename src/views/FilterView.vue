@@ -8,15 +8,6 @@
       <div class="grid grid-rows-2 grid-flow-col-dense gap-1 overflow-x-auto">
         <Tag v-for="tag in filterStore.selectedFilters" :icon_img_url="tag.image_url" :text="tag.name"
           bg_color="bg-purple-350" />
-        <!-- <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ1" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ2" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ3" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ4" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ5" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ6" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ7" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ8" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ9" bg_color="bg-purple-350" /> -->
       </div>
     </div>
 
