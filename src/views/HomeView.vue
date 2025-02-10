@@ -5,20 +5,14 @@
       <div class="flex flex-row justify-center">
         <img class="h-[7vh]" src="/images/logo.png">
       </div>
-      <div v-if="tagList.length === 0" class="flex justify-center items-center">
+      <div v-if="filterStore.selectedFilters.length === 0" class="flex justify-center items-center">
+
         <Tag icon_img_url="/icons/icon-triangle_down.png" text="ฟิลเตอร์โชคชะตา" bg_color="bg-purple-350"
-          :icon_first="false" />
+          :icon_first="false" @click="goFilterView()" />
       </div>
       <div v-else class="grid grid-rows-2 grid-flow-col-dense gap-1 overflow-x-auto">
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ1" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ2" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ3" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ4" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ5" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ6" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ7" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ8" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ9" bg_color="bg-purple-350" />
+        <Tag v-for="tag in filterStore.selectedFilters" :icon_img_url="tag.image_url" :text="tag.name"
+          bg_color="bg-purple-350" />
       </div>
     </div>
 
@@ -41,19 +35,31 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import Tag from "../components/icons/Tag.vue";
-import TempleList from "../components/TempleList.vue";
+import { useFilterStore } from '@/stores/filterStore';
+import { useRouter } from "vue-router";
+import Tag from "@/components/icons/Tag.vue";
+import TempleList from "@/components/TempleList.vue";
 
 // Reactive variables
 const tagList = ref([]);
 const temples = ref([]);
+const router = useRouter();
+const filterStore = useFilterStore();
 
-// API URL
-const apiUrl =
-  "http://127.0.0.1:8000/temples/temple?latitude=13.713727867769885&longitude=100.48010144417799";
+const goFilterView = () => {
+  router.push({ path: `/filter` });
+  // router.push({ path: `/temple_info` });
+};
 
 // Fetch temple data on mount
 const fetchTemples = async () => {
+
+  const tagIds = filterStore.selectedFilters.map(tag => tag.id).join(",");
+
+  // Construct URL with selected tag IDs
+  const apiUrl = `http://127.0.0.1:8000/temples/temple?latitude=13.713727867769885&longitude=100.48010144417799${tagIds ? `&tag_ids=${tagIds}` : ""
+    }`;
+
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {

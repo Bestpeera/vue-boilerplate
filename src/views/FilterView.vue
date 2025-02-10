@@ -6,7 +6,9 @@
         <p class="text-lg text-text-1000">ฟิลเตอร์ที่คุณเลือก</p>
       </div>
       <div class="grid grid-rows-2 grid-flow-col-dense gap-1 overflow-x-auto">
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ1" bg_color="bg-purple-350" />
+        <Tag v-for="tag in filterStore.selectedFilters" :icon_img_url="tag.image_url" :text="tag.name"
+          bg_color="bg-purple-350" />
+        <!-- <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ1" bg_color="bg-purple-350" />
         <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพแห่งความสำเร็จ2" bg_color="bg-purple-350" />
         <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ3" bg_color="bg-purple-350" />
         <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ4" bg_color="bg-purple-350" />
@@ -14,7 +16,7 @@
         <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ6" bg_color="bg-purple-350" />
         <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ7" bg_color="bg-purple-350" />
         <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ8" bg_color="bg-purple-350" />
-        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ9" bg_color="bg-purple-350" />
+        <Tag icon_img_url="https://i.imgur.com/3KNZ1yi.png" text="เทพ9" bg_color="bg-purple-350" /> -->
       </div>
     </div>
 
@@ -34,25 +36,27 @@
           {{ option }}
         </span>
       </div>
-
+      <div class="flex flex-col bg-special-white rounded-t-[20px] justify-center p-2 gap-y-1 border">
+        <ul class="list-inside divide-y divide-text-333">
+          <li v-for="tag in tags">
+            <TagSelect :key="tag.id" :tag="tag" />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Tag from '../components/icons/Tag.vue'
-import TempleList from '../components/TempleList.vue';
-import TempleInfoView from '../views/TempleInfoView.vue'
-import { ref, PropType } from "vue";
+import { ref, PropType, onMounted } from "vue";
+import { useFilterStore } from '../stores/filterStore';
+import Tag from "../components/icons/Tag.vue";
+import TagSelect from "../components/icons/TagSelect.vue";
 
 // Props
 defineProps({
   imgSrc: {
     type: String,
-    required: true,
-  },
-  tags: {
-    type: Array as PropType<{ icon_img_url: string; text: string; bg_color: string }[]>,
     required: true,
   },
   distance: {
@@ -61,14 +65,14 @@ defineProps({
   },
 });
 
-// Local reactive list to store tags
-const tagList = ref([]);
+const DEFAULT_OPTION = "พรที่ขอ";
 
-// Define options and selectedOption as reactive variables
-const options = ref<string[]>(["พรที่ขอ", "ศาสนา", "เทพที่ศักการะ", "กิจกรรม"]);
+// Reactive state
+const tags = ref<{ id: number; name: string; type: string; image_url: string }[]>([]);
 const selectedOption = ref<string | null>(null);
-
-// Define underline colors for each option
+const isLoading = ref(false);
+const filterStore = useFilterStore();
+const options = ref<string[]>(["พรที่ขอ", "ศาสนา", "เทพที่ศักการะ", "กิจกรรม"]);
 const underlineColors: Record<string, string> = {
   "พรที่ขอ": "decoration-tertiary",
   "ศาสนา": "decoration-primary",
@@ -76,17 +80,47 @@ const underlineColors: Record<string, string> = {
   "กิจกรรม": "decoration-special-sky",
 };
 
+// Mapping options to query parameters
+const optionQueryParams: Record<string, string> = {
+  "พรที่ขอ": "wish",
+  "ศาสนา": "religious",
+  "เทพที่ศักการะ": "god",
+  "กิจกรรม": "activity",
+};
+
+// Fetch tags from API when an option is selected
+const fetchTags = async (option: string) => {
+  const apiUrl = "http://127.0.0.1:8000/temples/tags?type=";
+  const queryParam = optionQueryParams[option];
+
+  if (!queryParam) {
+    console.error("Invalid option selected");
+    return;
+  }
+
+  const requestUrl = `${apiUrl}${queryParam}`;
+  isLoading.value = true;
+
+  try {
+    const response = await fetch(requestUrl);
+    const data = await response.json();
+    tags.value = data; // Assuming API returns an array of tags
+  } catch (error) {
+    console.error("Error fetching tags:", error);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
 // Method to handle option selection
 const selectOption = (option: string) => {
-  selectedOption.value = option; // Highlight the clicked option
-  console.log(`Sending request with parameter: ${option}`);
-
-  // Example of sending a request
-  fetch(`/your-api-endpoint?name=${encodeURIComponent(option)}`)
-    .then(response => response.json())
-    .then(data => {
-      console.log("Response:", data);
-    })
-    .catch(error => console.error("Error:", error));
+  selectedOption.value = option;
+  fetchTags(option); // Fetch tags when an option is selected
 };
+
+// Fetch initial tags when the component loads (optional)
+onMounted(() => {
+  selectedOption.value = DEFAULT_OPTION;
+  fetchTags(DEFAULT_OPTION); // Default category
+});
 </script>
