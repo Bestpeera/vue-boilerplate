@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="['tag inline-flex justify-center items-center text-text-1000 rounded-full px-4 py-2 border-[1px] border-special-white', backgroundColor]">
+        :class="['tag inline-flex justify-center items-center text-text-1000 rounded-full px-3 py-1 border-[1px] w-fit border-special-white ', backgroundColor]">
         <template v-if="icon_first">
             <img :src="icon_img_url" alt="Icon" class="h-4 w-4 pr-1">
             <span class="text-sm whitespace-nowrap">{{ text }}</span>

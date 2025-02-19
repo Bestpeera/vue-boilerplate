@@ -31,6 +31,19 @@
     </div>
 
   </div>
+
+  <div
+    class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[340px] flex flex-row bg-special-white rounded-[20px] justify-center p-4 shadow-lg">
+    <!-- Input Field -->
+    <input v-model="location" type="text" placeholder="MRT วัดมังกร"
+      class="bg-transparent text-black text-lg focus:outline-none flex-1" />
+
+    <!-- Current Location Button -->
+    <button @click="getCurrentLocation"
+      class="ml-2 flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full">
+      <img src="/icons/icon-current_location.png">
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -45,6 +58,7 @@ const tagList = ref([]);
 const temples = ref([]);
 const router = useRouter();
 const filterStore = useFilterStore();
+const location = ref('MRT วัดมังกร');
 
 const goFilterView = () => {
   router.push({ path: `/filter` });
@@ -70,6 +84,21 @@ const fetchTemples = async () => {
     temples.value = data;
   } catch (error) {
     console.error("Failed to fetch temples:", error);
+  }
+};
+
+const getCurrentLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log("Latitude:", position.coords.latitude, "Longitude:", position.coords.longitude);
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+      }
+    );
+  } else {
+    console.error("Geolocation is not supported by this browser.");
   }
 };
 

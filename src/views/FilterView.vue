@@ -5,7 +5,7 @@
       <div class="flex flex-row justify-center">
         <p class="text-lg text-text-1000">ฟิลเตอร์ที่คุณเลือก</p>
       </div>
-      <div class="grid grid-rows-2 grid-flow-col-dense gap-1 overflow-x-auto">
+      <div class="grid grid-rows-2 grid-flow-col-dense justify-start gap-1 overflow-x-auto ">
         <Tag v-for="tag in filterStore.selectedFilters" :icon_img_url="tag.image_url" :text="tag.name"
           bg_color="bg-purple-350" />
       </div>
@@ -27,13 +27,19 @@
           {{ option }}
         </span>
       </div>
-      <div class="flex flex-col bg-special-white rounded-t-[20px] justify-center p-2 gap-y-1 border">
+      <div class="flex flex-col bg-special-white rounded-t-[20px] justify-center border">
         <ul class="list-inside divide-y divide-text-333">
           <li v-for="tag in tags">
             <TagSelect :key="tag.id" :tag="tag" />
           </li>
         </ul>
       </div>
+      <div class="flex flex-row justify-center">
+        <img class="h-[7vh]" src="/images/logo.png">
+      </div>
+      <router-link to="/" class="flex py-4 bg-primary rounded-[22px] justify-center cursor-pointer">
+        <p>ไปกันต่อ</p>
+      </router-link>
     </div>
   </div>
 </template>

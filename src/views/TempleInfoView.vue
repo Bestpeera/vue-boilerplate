@@ -80,6 +80,16 @@
     <div v-else class="text-center py-10">
         <p>Loading temple information...</p>
     </div>
+
+    <div class="fixed bottom-4 right-4">
+        <router-link to="/"
+            class="w-16 h-16 bg-primary border text-yellow-1000 rounded-full flex items-center justify-center shadow-lg">
+            <div class="flex flex-col items-center justify-center gap-y-0.5">
+                <img src="/icons/icon-home.webp" class="w-6 h-6">
+                <p class="text-xs font-bold text-center">Home Page</p>
+            </div>
+        </router-link>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -87,6 +97,7 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'; // Import useRoute for accessing route parameters
 import GodBubble from '../components/GodBubble.vue';
 import StepNumber from '../components/icons/StepNumber.vue';
+import router from '@/router';
 
 const route = useRoute(); // Access the route object
 const templeData = ref(null);
