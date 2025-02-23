@@ -17,7 +17,7 @@
                     +<span ref="hiddenCount">0</span>
                 </button>
             </div>
-            <p class="text-gray-600">{{ distance }} km</p>
+            <p v-if="distance" class="text-gray-600">{{ distance }} km {{ distance_description }}</p>
         </div>
     </div>
 </template>
@@ -48,6 +48,11 @@ const props = defineProps({
     tags: {
         type: Array,
         required: true,
+    },
+    distance_description: {
+        type: String,
+        required: false,
+        default: "",
     },
 });
 

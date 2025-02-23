@@ -23,7 +23,8 @@
       </div>
       <div v-if="temples.length > 0" class="flex flex-col gap-y-6">
         <TempleList v-for="temple in temples" :key="temple.id" :temple_id="temple.id" :temple_name="temple.thai_name"
-          :temple_image_url="temple.main_image_url" :distance="temple.distance" :tags="temple.tags" />
+          :temple_image_url="temple.main_image_url" :distance="temple.distance" :tags="temple.tags"
+          :distance_description="fetch_type === FETCH_TYPE.SEARCH_LOCATION ? 'จากสถานที่ที่คุณค้นหา' : 'จากคุณ'" />
       </div>
       <div v-else>
         <p class="text-center text-gray-500">No temples found.</p>
@@ -31,13 +32,11 @@
     </div>
 
   </div>
-
   <div
     class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[340px] flex flex-row bg-special-white rounded-[20px] justify-center p-4 shadow-lg">
     <!-- Input Field -->
-    <input v-model="location" type="text" placeholder="MRT วัดมังกร"
-      class="bg-transparent text-black text-lg focus:outline-none flex-1" />
-
+    <input v-model="search_text" type="text" placeholder="ค้นหาสถานที่"
+      class="bg-transparent text-black text-lg focus:outline-none flex-1" @keydown.enter="searchLocation" />
     <!-- Current Location Button -->
     <button @click="getCurrentLocation"
       class="ml-2 flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full">
@@ -47,33 +46,53 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useFilterStore } from '@/stores/filterStore';
 import { useRouter } from "vue-router";
 import Tag from "@/components/icons/Tag.vue";
 import TempleList from "@/components/TempleList.vue";
 
 // Reactive variables
-const tagList = ref([]);
 const temples = ref([]);
 const router = useRouter();
 const filterStore = useFilterStore();
-const location = ref('MRT วัดมังกร');
+const search_text = ref(filterStore.search_text);
+const latitude = ref(filterStore.latitude);
+const longitude = ref(filterStore.longitude);
+const fetch_type = ref(filterStore.fetch_type);
+
+const FETCH_TYPE = {
+  CURRENT_LOCATION: "current_location",
+  SEARCH_LOCATION: "search_location",
+};
+
+
+// Sync store updates when variables change
+watch(search_text, (val) => filterStore.setSearchText(val));
+watch(latitude, (val) => filterStore.setLocation(val, longitude.value));
+watch(longitude, (val) => filterStore.setLocation(latitude.value, val));
+watch(fetch_type, (val) => filterStore.setFetchType(val));
 
 const goFilterView = () => {
   router.push({ path: `/filter` });
-  // router.push({ path: `/temple_info` });
 };
 
 // Fetch temple data on mount
 const fetchTemples = async () => {
+  const params = new URLSearchParams();
 
+  if (latitude.value !== null) params.append("latitude", latitude.value);
+  if (longitude.value !== null) params.append("longitude", longitude.value);
+  if (fetch_type.value === FETCH_TYPE.SEARCH_LOCATION) {
+    if (search_text.value.trim() !== "") params.append("search_text", search_text.value);
+  }
   const tagIds = filterStore.selectedFilters.map(tag => tag.id).join(",");
+  if (tagIds) params.append("tag_ids", tagIds);
 
-  // Construct URL with selected tag IDs
-  const apiUrl = `http://127.0.0.1:8000/temples/temple?latitude=13.713727867769885&longitude=100.48010144417799${tagIds ? `&tag_ids=${tagIds}` : ""
-    }`;
+  const apiUrl = `http://127.0.0.1:8000/temples/temple?${params.toString()}`;
 
+  console.log(apiUrl); // Debugging: Check the final URL
+  // Fetch the API with apiUrl
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
@@ -84,14 +103,23 @@ const fetchTemples = async () => {
     temples.value = data;
   } catch (error) {
     console.error("Failed to fetch temples:", error);
-  }
-};
+  };
+}
+
+const searchLocation = () => {
+  fetch_type.value = FETCH_TYPE.SEARCH_LOCATION;
+  fetchTemples();
+}
 
 const getCurrentLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log("Latitude:", position.coords.latitude, "Longitude:", position.coords.longitude);
+        latitude.value = position.coords.latitude;
+        longitude.value = position.coords.longitude;
+        console.log("Updated Latitude:", latitude.value, "Longitude:", longitude.value);
+        fetch_type.value = FETCH_TYPE.CURRENT_LOCATION;
+        fetchTemples();
       },
       (error) => {
         console.error("Error getting location:", error);
