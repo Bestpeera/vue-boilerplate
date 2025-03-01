@@ -5,7 +5,7 @@
       <div class="flex flex-row justify-center">
         <img class="h-[7vh]" src="/images/logo.png">
       </div>
-      <div class="grid grid-flow-col gap-x-1">
+      <div class="flex flex-row gap-x-1">
         <div class="grid place-items-start" @click="goFilterView()">
           <div class="flex flex-col items-center">
             <img src="/icons/icon-star.png" class="h-[5vh]">
