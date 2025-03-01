@@ -18,6 +18,11 @@
             <BlankTag />
             <BlankTag />
             <BlankTag />
+            <BlankTag />
+            <BlankTag />
+            <BlankTag />
+            <BlankTag />
+
           </div>
         </div>
         <div v-else class="grid grid-rows-2 grid-flow-col-dense justify-start gap-1 overflow-x-auto ">
