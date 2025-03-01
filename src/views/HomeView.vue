@@ -1,18 +1,29 @@
 <template>
   <div class="bg-yellow-300">
     <!-- Header -->
-    <div class="max-h-[25vh] px-4 pt-4 pb-5 space-y-2 justify-center items-center">
+    <div class="max-h-[25vh] px-4 pt-4 pb-5 space-y-2">
       <div class="flex flex-row justify-center">
         <img class="h-[7vh]" src="/images/logo.png">
       </div>
-      <div v-if="filterStore.selectedFilters.length === 0" class="flex justify-center items-center">
-
-        <Tag icon_img_url="/icons/icon-triangle_down.png" text="ฟิลเตอร์โชคชะตา" bg_color="bg-purple-350"
-          :icon_first="false" @click="goFilterView()" />
-      </div>
-      <div v-else class="grid grid-rows-2 grid-flow-col-dense gap-1 overflow-x-auto">
-        <Tag v-for="tag in filterStore.selectedFilters" :icon_img_url="tag.image_url" :text="tag.name"
-          bg_color="bg-purple-350" />
+      <div class="grid grid-flow-col gap-x-1">
+        <div class="grid place-items-start" @click="goFilterView()">
+          <div class="flex flex-col items-center">
+            <img src="/icons/icon-star.png" class="h-[5vh]">
+            <p class="text-center">ฟิลเตอร์<br>โชคชะตา</p>
+          </div>
+        </div>
+        <div v-if="filterStore.selectedFilters.length === 0" class="flex justify-start">
+          <div class="grid grid-rows-2 grid-flow-col-dense justify-start gap-1 overflow-x-auto ">
+            <BlankTag />
+            <BlankTag />
+            <BlankTag />
+            <BlankTag />
+          </div>
+        </div>
+        <div v-else class="grid grid-rows-2 grid-flow-col-dense justify-start gap-1 overflow-x-auto ">
+          <Tag v-for="tag in filterStore.selectedFilters" :icon_img_url="tag.image_url" :text="tag.name"
+            bg_color="bg-purple-350" />
+        </div>
       </div>
     </div>
 
@@ -51,6 +62,7 @@ import { useFilterStore } from '@/stores/filterStore';
 import { useRouter } from "vue-router";
 import Tag from "@/components/icons/Tag.vue";
 import TempleList from "@/components/TempleList.vue";
+import BlankTag from "@/components/icons/BlankTag.vue";
 
 // Reactive variables
 const temples = ref([]);
