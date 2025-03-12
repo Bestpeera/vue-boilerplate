@@ -1,21 +1,29 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import HomeView from './views/HomeView.vue';
-import TempleInfoView from './views/TempleInfoView.vue';
-import FilterView from "./views/FilterView.vue";
+import { ref, onMounted } from "vue";
+import LandingPageView from "./views/LandingPageView.vue";
+import { useRoute } from "vue-router";
 
-// Reactive data for temples
-const templesData = ref([
-  { id: 1, latitude: "13.75", longitude: "100.5" },
-  { id: 2, latitude: "13.76", longitude: "100.51" },
-]);
+const isMobile = ref(false);
+const isTablet = ref(false);
+const isPC = ref(false);
+
+onMounted(() => {
+  const width = window.innerWidth;
+  isMobile.value = width <= 768; // Phone width (you can adjust this value)
+  isTablet.value = width > 768 && width <= 1024; // Tablet width
+  isPC.value = width > 1024; // PC width
+});
 </script>
 
 <template>
-  <!-- <TempleInfoView /> -->
-  <!-- <FilterView /> -->
-  <!-- <HomeView /> -->
-  <router-view />
+  <!-- Conditionally render based on device type -->
+  <!-- <router-view /> -->
+  <div v-if="isMobile">
+    <router-view />
+  </div>
+  <div v-else-if="isTablet || isPC" class="mx-auto text-center">
+    <LandingPageView />
+  </div>
 </template>
 
 <style scoped>

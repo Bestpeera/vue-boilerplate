@@ -46,9 +46,9 @@
 
 <script setup lang="ts">
 import { ref, PropType, onMounted } from "vue";
-import { useFilterStore } from '../stores/filterStore';
-import Tag from "../components/icons/Tag.vue";
-import TagSelect from "../components/icons/TagSelect.vue";
+import { useFilterStore } from '@/stores/filterStore';
+import Tag from "@/components/icons/Tag.vue";
+import TagSelect from "@/components/icons/TagSelect.vue";
 
 // Props
 defineProps({
