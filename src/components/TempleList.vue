@@ -2,7 +2,9 @@
     <div class="flex flex-row gap-x-4">
         <!-- Image Section -->
         <div class="basis-1/3 flex-shrink-0" @click="goToTempleInfo()">
-            <img class="rounded-[14px] w-full h-auto max-h-[200px] object-cover" :src="temple_image_url" alt="Temple" />
+            <div class="w-full aspect-square">
+                <img class="rounded-[14px] w-full h-full object-cover" :src="temple_image_url" alt="Temple" />
+            </div>
         </div>
 
         <!-- Tags Section -->
