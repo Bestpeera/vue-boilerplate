@@ -6,7 +6,7 @@
         <img class="h-[7vh]" src="/images/logo.png">
       </div>
       <div class="flex flex-row gap-x-1">
-        <div class="grid place-items-start" @click="goFilterView()">
+        <div class="grid place-items-start flex-none" @click="goFilterView()">
           <div class="flex flex-col items-center">
             <img src="/icons/icon-star.png" class="h-[5vh]">
             <p class="text-center">ฟิลเตอร์<br>โชคชะตา</p>
