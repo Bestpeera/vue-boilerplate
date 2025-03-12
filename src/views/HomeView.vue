@@ -59,6 +59,8 @@
       <img src="/icons/icon-current_location.png">
     </button>
   </div>
+  <!-- Bottom space for search box not block the last temple. -->
+  <div class="h-16"></div>
 </template>
 
 <script setup lang="ts">
