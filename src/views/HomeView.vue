@@ -55,7 +55,7 @@
       class="bg-transparent text-black text-lg focus:outline-none flex-1" @keydown.enter="searchLocation" />
     <!-- Current Location Button -->
     <button @click="getCurrentLocation"
-      class="ml-2 flex items-center justify-center w-8 h-8 bg-yellow-400 rounded-full">
+      class="ml-2 flex items-center justify-center w-6 h-6 bg-yellow-400 rounded-full">
       <img src="/icons/icon-current_location.png">
     </button>
   </div>
