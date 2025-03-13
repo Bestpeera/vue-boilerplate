@@ -64,6 +64,7 @@
 </template>
 
 <script setup lang="ts">
+import { BACKEND_URL } from "@/config";
 import { ref, onMounted, watch } from "vue";
 import { useFilterStore } from '@/stores/filterStore';
 import { useRouter } from "vue-router";
@@ -108,7 +109,7 @@ const fetchTemples = async () => {
   const tagIds = filterStore.selectedFilters.map(tag => tag.id).join(",");
   if (tagIds) params.append("tag_ids", tagIds);
 
-  const apiUrl = `http://127.0.0.1:8000/temples/temple?${params.toString()}`;
+  const apiUrl = `${BACKEND_URL}/temples/temple?${params.toString()}`;
 
   console.log(apiUrl); // Debugging: Check the final URL
   // Fetch the API with apiUrl

@@ -45,6 +45,7 @@
 </template>
 
 <script setup lang="ts">
+import { BACKEND_URL } from "@/config";
 import { ref, PropType, onMounted } from "vue";
 import { useFilterStore } from '@/stores/filterStore';
 import Tag from "@/components/icons/Tag.vue";
@@ -87,7 +88,7 @@ const optionQueryParams: Record<string, string> = {
 
 // Fetch tags from API when an option is selected
 const fetchTags = async (option: string) => {
-  const apiUrl = "http://127.0.0.1:8000/temples/tags?type=";
+  const apiUrl = `${BACKEND_URL}/temples/tags?type=`;
   const queryParam = optionQueryParams[option];
 
   if (!queryParam) {

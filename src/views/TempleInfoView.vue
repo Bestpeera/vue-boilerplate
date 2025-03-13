@@ -93,6 +93,7 @@
 </template>
 
 <script setup lang="ts">
+import { BACKEND_URL } from "@/config";
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'; // Import useRoute for accessing route parameters
 import GodBubble from '../components/GodBubble.vue';
@@ -105,7 +106,7 @@ const templeData = ref(null);
 onMounted(async () => {
     const templeId = route.params.temple_id; // Get the temple_id from the route parameter
     try {
-        const response = await fetch(`http://127.0.0.1:8000/temples/temple/${templeId}`);
+        const response = await fetch(`${BACKEND_URL}/temples/temple/${templeId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch temple data');
         }
