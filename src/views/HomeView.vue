@@ -65,7 +65,7 @@
 
 <script setup lang="ts">
 import { BACKEND_URL } from "@/config";
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useFilterStore } from '@/stores/filterStore';
 import { useRouter } from "vue-router";
 import Tag from "@/components/icons/Tag.vue";
@@ -80,7 +80,11 @@ const search_text = ref(filterStore.search_text);
 const latitude = ref(filterStore.latitude);
 const longitude = ref(filterStore.longitude);
 const fetch_type = ref(filterStore.fetch_type);
-
+const currentPage = ref(1);
+const totalPages = ref(1);
+const nextPageUrl = ref(null);
+const prevPageUrl = ref(null);
+const isFetching = ref(false);
 const FETCH_TYPE = {
   CURRENT_LOCATION: "current_location",
   SEARCH_LOCATION: "search_location",
@@ -98,8 +102,13 @@ const goFilterView = () => {
 };
 
 // Fetch temple data on mount
-const fetchTemples = async () => {
+const fetchTemples = async (page = 1, page_size = 10) => {
+  if (isFetching.value) return;
+  isFetching.value = true;
+
   const params = new URLSearchParams();
+  params.append("page", page);
+  params.append("page_size", page_size);
 
   if (latitude.value !== null) params.append("latitude", latitude.value);
   if (longitude.value !== null) params.append("longitude", longitude.value);
@@ -112,7 +121,7 @@ const fetchTemples = async () => {
   const apiUrl = `${BACKEND_URL}/temples/temple?${params.toString()}`;
 
   console.log(apiUrl); // Debugging: Check the final URL
-  // Fetch the API with apiUrl
+
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
@@ -120,11 +129,42 @@ const fetchTemples = async () => {
     }
     const data = await response.json();
     console.log(data);
-    temples.value = data;
+
+    // Update pagination values
+    currentPage.value = data.page_number;
+    totalPages.value = data.total_pages;
+    nextPageUrl.value = data.next;
+    prevPageUrl.value = data.previous;
+
+    // Append new results without duplicating
+    const newTemples = data.results.filter(newTemple => !temples.value.some(existingTemple => existingTemple.id === newTemple.id));
+    temples.value = [...temples.value, ...newTemples];
   } catch (error) {
     console.error("Failed to fetch temples:", error);
-  };
-}
+  } finally {
+    isFetching.value = false;
+  }
+};
+
+const nextPage = () => {
+  if (nextPageUrl.value && !isFetching.value) {
+    fetchTemples(currentPage.value + 1);
+  }
+};
+
+// const prevPage = () => {
+//   if (prevPageUrl.value && !isFetching.value) {
+//     fetchTemples(currentPage.value - 1);
+//   }
+// };
+
+const handleScroll = () => {
+  if (
+    window.innerHeight + window.scrollY >= document.documentElement.offsetHeight - 100 && !isFetching.value
+  ) {
+    nextPage();
+  }
+};
 
 const searchLocation = () => {
   fetch_type.value = FETCH_TYPE.SEARCH_LOCATION;
@@ -153,5 +193,9 @@ const getCurrentLocation = () => {
 // Fetch data on component mount
 onMounted(() => {
   fetchTemples();
+  window.addEventListener("scroll", handleScroll);
+});
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
