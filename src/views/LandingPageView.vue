@@ -1,4 +1,8 @@
 <template>
+
+    <head>
+        <title>Mapmu | Landing Page</title>
+    </head>
     <div class="flex flex-col min-h-screen">
         <Header @change-language="changeLanguage" />
         <component :is="currentContent" />

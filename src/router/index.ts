@@ -7,17 +7,26 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: () => import("../views/HomeView.vue"), // Lazy loaded
+      meta: {
+        title: "Mapmu | Home",
+      },
     },
     {
       path: "/temple_info/:temple_id",
       name: "TempleInfo",
       component: () => import("../views/TempleInfoView.vue"), // Lazy loaded
       props: true,
+      meta: {
+        title: "Mapmu | Temple",
+      },
     },
     {
       path: "/filter",
       name: "Filter",
       component: () => import("../views/FilterView.vue"), // Lazy loaded
+      meta: {
+        title: "Mapmu | Filter",
+      },
     },
   ],
 });
