@@ -4,3 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    p, span {
+      @apply text-text-1000;
+    }
+  }
