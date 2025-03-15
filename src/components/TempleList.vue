@@ -16,7 +16,8 @@
                     bg_color="bg-purple-350" />
                 <button ref="plusButton" class="rounded-[24px] px-3 py-1 bg-special-banana flex-shrink-0"
                     @click="showAllTags()">
-                    +<span ref="hiddenCount">0</span>
+                    <span>+</span>
+                    <span ref="hiddenCount">0</span>
                 </button>
             </div>
             <p v-if="distance" class="text-gray-600">{{ distance }} km {{ distance_description }}</p>
