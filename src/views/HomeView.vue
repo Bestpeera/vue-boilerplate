@@ -39,7 +39,7 @@
       </div>
       <div v-if="temples.length > 0" class="flex flex-col gap-y-6">
         <TempleList v-for="temple in temples" :key="temple.id" :temple_id="temple.id" :temple_name="temple.thai_name"
-          :temple_image_url="temple.main_image_url" :distance="temple.distance" :tags="temple.tags"
+          :temple_image_url="temple.main_image_thumbnail_url" :distance="temple.distance" :tags="temple.tags"
           :distance_description="fetch_type === FETCH_TYPE.SEARCH_LOCATION ? 'จากสถานที่ที่คุณค้นหา' : 'จากคุณ'" />
       </div>
       <div v-else>
