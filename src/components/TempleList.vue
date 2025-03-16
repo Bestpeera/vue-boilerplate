@@ -46,7 +46,7 @@ const props = defineProps({
     },
     distance: {
         type: Number,
-        required: true
+        required: false
     },
     tags: {
         type: Array,
