@@ -168,6 +168,7 @@ const handleScroll = () => {
 
 const searchLocation = () => {
   fetch_type.value = FETCH_TYPE.SEARCH_LOCATION;
+  temples.value = [];
   fetchTemples();
 }
 
@@ -179,6 +180,7 @@ const getCurrentLocation = () => {
         longitude.value = position.coords.longitude;
         console.log("Updated Latitude:", latitude.value, "Longitude:", longitude.value);
         fetch_type.value = FETCH_TYPE.CURRENT_LOCATION;
+        temples.value = [];
         fetchTemples();
       },
       (error) => {
