@@ -120,15 +120,12 @@ const fetchTemples = async (page = 1, page_size = 10) => {
 
   const apiUrl = `${BACKEND_URL}/temples/temple?${params.toString()}`;
 
-  console.log(apiUrl); // Debugging: Check the final URL
-
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
 
     // Update pagination values
     currentPage.value = data.page_number;
@@ -178,7 +175,6 @@ const getCurrentLocation = () => {
       (position) => {
         latitude.value = position.coords.latitude;
         longitude.value = position.coords.longitude;
-        console.log("Updated Latitude:", latitude.value, "Longitude:", longitude.value);
         fetch_type.value = FETCH_TYPE.CURRENT_LOCATION;
         temples.value = [];
         fetchTemples();
