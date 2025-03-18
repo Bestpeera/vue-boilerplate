@@ -3,3 +3,4 @@ Disallow: /admin/
 Allow: /public/
 Allow: /images/
 Allow: /styles/
+Sitemap: https://www.mapmu.app/sitemap.xml
