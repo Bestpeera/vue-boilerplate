@@ -59,6 +59,15 @@
       <img src="/icons/icon-current_location.png">
     </button>
   </div>
+
+  <!-- Loading Popup -->
+  <div v-if="isLoading" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+      <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="mt-2 text-gray-700">Loading...</p>
+    </div>
+  </div>
+
   <!-- Bottom space for search box not block the last temple. -->
   <div class="h-16"></div>
 </template>
@@ -85,6 +94,7 @@ const totalPages = ref(1);
 const nextPageUrl = ref(null);
 const prevPageUrl = ref(null);
 const isFetching = ref(false);
+const isLoading = ref(false);
 const FETCH_TYPE = {
   CURRENT_LOCATION: "current_location",
   SEARCH_LOCATION: "search_location",
@@ -163,31 +173,45 @@ const handleScroll = () => {
   }
 };
 
-const searchLocation = () => {
-  fetch_type.value = FETCH_TYPE.SEARCH_LOCATION;
-  temples.value = [];
-  fetchTemples();
-}
-
-const getCurrentLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        latitude.value = position.coords.latitude;
-        longitude.value = position.coords.longitude;
-        fetch_type.value = FETCH_TYPE.CURRENT_LOCATION;
-        temples.value = [];
-        fetchTemples();
-      },
-      (error) => {
-        console.error("Error getting location:", error);
-      }
-    );
-  } else {
-    console.error("Geolocation is not supported by this browser.");
+const searchLocation = async () => {
+  try {
+    isLoading.value = true;
+    fetch_type.value = FETCH_TYPE.SEARCH_LOCATION;
+    temples.value = [];
+    await fetchTemples(); // Wait for fetching to finish
+  } finally {
+    isLoading.value = false; // Stop loading as soon as fetchTemples finishes
   }
 };
 
+const getCurrentLocation = async () => {
+  try {
+    isLoading.value = true;
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => { // Mark this function as async
+          latitude.value = position.coords.latitude;
+          longitude.value = position.coords.longitude;
+          fetch_type.value = FETCH_TYPE.CURRENT_LOCATION;
+          temples.value = [];
+          await fetchTemples(); // Wait for fetching to complete
+          isLoading.value = false; // Stop loading here
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          isLoading.value = false; // Stop loading if error occurs
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      isLoading.value = false;
+    }
+  } catch (error) {
+    console.error(error);
+    isLoading.value = false;
+  }
+};
 // Fetch data on component mount
 onMounted(() => {
   fetchTemples();
