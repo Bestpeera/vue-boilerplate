@@ -17,7 +17,7 @@ const stars = (score: number) => {
 <template>
     <div class="p-4 border rounded-lg shadow-md bg-white max-w-md">
         <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold">{{ name }}</h3>
+            <h3 class="text-lg text-text-1000 font-semibold">{{ name }}</h3>
             <div class="text-yellow-500 text-lg">
                 <span v-for="(star, index) in stars(score)" :key="index">{{ star }}</span>
             </div>
@@ -25,7 +25,7 @@ const stars = (score: number) => {
         <div class="flex items-center justify-between">
             <Tag :icon_img_url="tag.image_url" :text="tag.name" bg_color="bg-purple-350" />
         </div>
-        <p class="text-gray-700 mt-2">{{ comment }}</p>
+        <p class="text-text-1000 mt-2">{{ comment }}</p>
         <!-- <div class="flex justify-between mt-4">
             <button class="flex items-center bg-pink-300 text-white px-4 py-2 rounded-lg">
                 <span class="mr-2">💡</span> ชอบ

@@ -8,6 +8,7 @@ import content_42 from '@/landing_page/assets/content_42.svg';
 import content_43 from '@/landing_page/assets/content_43.svg';
 import content_44 from '@/landing_page/assets/content_44.svg';
 import lineOA from '@/landing_page/assets/LINE_OA.svg';
+import MapmuQR from '@/landing_page/assets/mapmu_qr.png';
 import Card from '@/landing_page/components/Card.vue';
 import OrangeCat from '@/landing_page/assets/Orange_cat.png';
 import icon1 from '@/landing_page/assets/location.png';
@@ -47,10 +48,7 @@ import p_aeur from '@/landing_page/assets/aeur.png';
         <h2 class="font-semibold text-3xl bg-gradient-to-r from-[#4B3F72] to-[#8E77D8] text-transparent bg-clip-text">
           Scan QR Code here
         </h2>
-        <img :src="lineOA" alt="facebook" class="h-30 w-auto" />
-        <p class="text-m text-black p-2">
-          (Mapmu QR code ของเว็บ)
-        </p>
+        <img :src="MapmuQR" alt="facebook" class="h-[19vh] w-auto" />
       </div>
       <div>
         <img :src="content_2" alt="img2" class="h-30 w-auto" />
