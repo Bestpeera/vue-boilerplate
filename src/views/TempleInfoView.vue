@@ -19,11 +19,11 @@
                 <img src=" /icons/icon-read.svg">
                 <h2 class="font-semibold text-black">อ่านรีวิวสายมู</h2>
             </router-link>
-            <div
+            <router-link :to="`/review/temple/${templeId}/add`"
                 class="flex flex-row bg-special-white rounded-[20px] justify-center p-5 grow space-x-1 bg-gradient-to-b from-yellow-100 via-special-sky to-purple-350">
                 <img src="/icons/icon-review.svg">
                 <h2 class="font-semibold text-black">แชร์รีวิวของคุณ</h2>
-            </div>
+            </router-link>
         </div>
 
         <!-- Contents -->

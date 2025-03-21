@@ -36,6 +36,14 @@ const router = createRouter({
         title: "Mapmu | Review",
       },
     },
+    {
+      path: "/review/temple/:temple_id/add",
+      name: "Add Review",
+      component: () => import("../views/AddReviewView.vue"), // Lazy loaded
+      meta: {
+        title: "Mapmu | Add Review",
+      },
+    },
   ],
 });
 
