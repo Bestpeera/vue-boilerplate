@@ -11,9 +11,9 @@
                     <span class="text-xl font-bold text-black">4.5</span>
                 </div>
             </div>
-            <ScoreBar text="การเงิน" iconImgUrl="/icons/icon-home.webp" :score=4.5 />
-            <ScoreBar text="การเงิน" iconImgUrl="/icons/icon-home.webp" :score=4 />
-            <ScoreBar text="การเงิน" iconImgUrl="/icons/icon-home.webp" :score=4 />
+            <ScoreBar text="การเงิน" iconImgUrl="/icons/icon-home.svg" :score=4.5 />
+            <ScoreBar text="การเงิน" iconImgUrl="/icons/icon-home.svg" :score=4 />
+            <ScoreBar text="การเงิน" iconImgUrl="/icons/icon-home.svg" :score=4 />
         </div>
         <div class="flex flex-col items-center bg-special-white rounded-[20px] justify-center p-5 space-y-5">
             <h1 class="text-lg font-bold text-text-1000">เลือกรีวิวความศักสิทธิ์ที่คุณอยากอ่าน</h1>
@@ -24,6 +24,8 @@
                 comment="คนที่แต่งงานแล้วก็จะนิยมมาขอลูกที่นี่ สำหรับเราการขอพรจะเน้นในเรื่องของการขอความสุข หากเรามีความสุข ความสบายใจ มันจะครอบคลุมทุกเรื่อง และเรื่องดี ๆ จะตามมาในภายหลัง" />
         </div>
     </div>
+
+    <RouterButton text="Back" :to="`/temple_info/${templeId}`" />
 </template>
 
 <script setup lang="ts">
@@ -31,7 +33,12 @@ import { ref, onMounted } from 'vue';
 import Comment from '@/components/Comment.vue';
 import Tag from '@/components/icons/Tag.vue';
 import ScoreBar from '@/components/icons/ScoreBar.vue';
+import RouterButton from '@/components/icons/RouterButton.vue';
 import { BACKEND_URL } from "@/config";
+import { useRoute } from 'vue-router';
+
+const templeId = ref(null);
+const route = useRoute();
 const tags = ref<{ id: number; name: string; type: string; image_url: string }[]>([]);
 const templeData = ref({
     english_name: "Wat Phra Kaew", // Mock English name
@@ -52,6 +59,7 @@ const fetchTags = async () => {
 };
 
 onMounted(() => {
+    templeId.value = route.params.temple_id;
     fetchTags();
 });
 </script>

@@ -12,6 +12,20 @@
             <img class="rounded-[14px]" :src="imageUrl" alt="Temple Image" />
         </div>
 
+        <!-- Review buttons -->
+        <div class="flex flex-row space-x-2 justify-evenly pt-5">
+            <router-link :to="`/review/temple/${templeId}`"
+                class="flex flex-row bg-special-white rounded-[20px] justify-center p-5 grow space-x-1 bg-gradient-to-b from-yellow-100 via-special-sky to-purple-350">
+                <img src=" /icons/icon-read.svg">
+                <h2 class="font-semibold text-black">อ่านรีวิวสายมู</h2>
+            </router-link>
+            <div
+                class="flex flex-row bg-special-white rounded-[20px] justify-center p-5 grow space-x-1 bg-gradient-to-b from-yellow-100 via-special-sky to-purple-350">
+                <img src="/icons/icon-review.svg">
+                <h2 class="font-semibold text-black">แชร์รีวิวของคุณ</h2>
+            </div>
+        </div>
+
         <!-- Contents -->
         <div class="py-5 space-y-5">
 
@@ -81,15 +95,7 @@
         <p>Loading temple information...</p>
     </div>
 
-    <div class="fixed bottom-4 right-4">
-        <router-link to="/"
-            class="w-16 h-16 bg-primary border text-yellow-1000 rounded-full flex items-center justify-center shadow-lg">
-            <div class="flex flex-col items-center justify-center gap-y-0.5">
-                <img src="/icons/icon-home.webp" class="w-6 h-6">
-                <p class="text-xs font-bold text-center">Home Page</p>
-            </div>
-        </router-link>
-    </div>
+    <RouterButton imgSrc="/icons/icon-home.svg" text="Home Page" to="/" />
 </template>
 
 <script setup lang="ts">
@@ -98,15 +104,16 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'; // Import useRoute for accessing route parameters
 import GodBubble from '../components/GodBubble.vue';
 import StepNumber from '../components/icons/StepNumber.vue';
-import router from '@/router';
+import RouterButton from "@/components/icons/RouterButton.vue";
 
 const route = useRoute(); // Access the route object
 const templeData = ref(null);
+const templeId = ref(null);
 
 onMounted(async () => {
-    const templeId = route.params.temple_id; // Get the temple_id from the route parameter
+    templeId.value = route.params.temple_id;
     try {
-        const response = await fetch(`${BACKEND_URL}/temples/temple/${templeId}`);
+        const response = await fetch(`${BACKEND_URL}/temples/temple/${templeId.value}`);
         if (!response.ok) {
             throw new Error('Failed to fetch temple data');
         }
