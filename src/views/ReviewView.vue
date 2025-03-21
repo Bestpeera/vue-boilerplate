@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-yellow-300 px-3 space-y-5">
+    <div class="bg-yellow-300 px-3 space-y-5 min-h-screen">
         <div class="flex flex-col px-2.5 pt-5 items-center">
             <p class="basis-1/2 text-lg text-text-1000 font-bold">แชร์รีวิวของคุณ</p>
             <p class="basis-1/2 text-lg text-text-1000">{{ reviews[0]?.temple_thai_name || 'No data available' }}</p>

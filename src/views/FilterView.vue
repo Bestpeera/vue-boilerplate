@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-yellow-300">
+  <div class="bg-yellow-300 min-h-screen">
     <!-- Header -->
     <div class="max-h-[25vh] px-4 pt-4 pb-5 space-y-2 justify-center items-center">
       <div class="flex flex-row justify-center">
