@@ -5,7 +5,7 @@
             <p class="basis-1/2 text-lg text-text-1000">{{ templeData.thai_name }}</p>
         </div>
         <div class="flex flex-col items-center bg-special-white rounded-[20px] justify-center p-5 space-y-5">
-            <h1 class="text-lg font-bold text-text-1000">เลือกหมวดหมู่พรที่เกี่ยวกับเรื่องราว</h1>
+            <h1 class="text-md font-bold text-text-1000">เลือกหมวดหมู่พรที่เกี่ยวกับเรื่องราว</h1>
             <div class="flex flex-wrap gap-4 p-4 justify-center">
                 <Tag v-for="tag in tags" :icon_img_url="tag.image_url" :text="tag.name" bg_color="bg-purple-350" />
             </div>
