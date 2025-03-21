@@ -21,7 +21,7 @@
                     <p class="font-semibold text-black">วิธีการเดินทาง</p>
                     <a :href="templeData.google_map_url" target="_blank"
                         class="inline-flex items-center bg-special-grape text-white rounded-full px-4 py-2">
-                        <span class="text-sm whitespace-nowrap">เปิดใน Google Map</span>
+                        <span class="text-sm whitespace-nowrap text-special-white">เปิดใน Google Map</span>
                         <img src="/icons/icon-map.png" alt="Send Icon" class="ml-2 h-4 w-4">
                     </a>
                 </div>
