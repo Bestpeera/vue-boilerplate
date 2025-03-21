@@ -35,7 +35,7 @@
         </ul>
       </div>
       <div class="flex flex-row justify-center">
-        <img class="h-[7vh]" src="/images/logo.png">
+        <img class="h-[7vh]" src="/images/logo.webp">
       </div>
       <router-link to="/" class="flex py-4 bg-primary rounded-[22px] justify-center cursor-pointer">
         <p>ไปกันต่อ</p>

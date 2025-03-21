@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="max-h-[25vh] px-4 pt-4 pb-5 space-y-2">
       <div class="flex flex-row justify-center">
-        <img class="h-[7vh]" src="/images/logo.png">
+        <img class="h-[7vh]" src="/images/logo.webp">
       </div>
       <div class="flex flex-row gap-x-1">
         <div class="grid place-items-start flex-none" @click="goFilterView()">
