@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import LandingPageView from "./views/LandingPageView.vue";
+import ReviewView from "./views/ReviewView.vue";
 import { useRoute } from "vue-router";
 
 const isMobile = ref(false);
@@ -16,8 +17,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Conditionally render based on device type -->
-  <!-- <router-view /> -->
   <div v-if="isMobile">
     <router-view />
   </div>
