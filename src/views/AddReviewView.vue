@@ -2,7 +2,6 @@
     <div class="bg-yellow-300 px-3 space-y-5 min-h-screen">
         <div class="flex flex-col px-2.5 pt-5 items-center">
             <p class="basis-1/2 text-lg text-text-1000 font-bold">เขียนแบ่งปันประสบการณ์ของคุณ</p>
-            <p class="basis-1/2 text-lg text-text-1000">{{ templeData.thai_name }}</p>
         </div>
         <div class="flex flex-col items-center bg-special-white rounded-[20px] justify-center p-5 space-y-5">
             <h1 class="text-md font-bold text-text-1000">เลือกหมวดหมู่พรที่เกี่ยวกับเรื่องราว</h1>
@@ -15,7 +14,8 @@
                     class="w-full h-40 p-2 bg-transparent border-none outline-none text-text-1000 placeholder-gray-400"
                     placeholder="เรื่องราวที่คุณอยากแชร์"></textarea>
             </div>
-            <router-link to="/" class="w-[50vw] flex py-4 bg-primary rounded-[22px] justify-center cursor-pointer">
+            <router-link :to="`/temple_info/${templeId}`"
+                class="w-[50vw] flex py-4 bg-primary rounded-[22px] justify-center cursor-pointer">
                 <p>เสร็จสิ้น</p>
             </router-link>
         </div>
@@ -36,12 +36,6 @@ import { useRoute } from 'vue-router';
 const templeId = ref(null);
 const route = useRoute();
 const tags = ref<{ id: number; name: string; type: string; image_url: string }[]>([]);
-const templeData = ref({
-    english_name: "Wat Phra Kaew", // Mock English name
-    thai_name: "วัดพระแก้ว", // Mock Thai name
-    location: "Bangkok, Thailand", // Mock location
-    description: "One of the most sacred temples in Thailand, known for the Emerald Buddha.", // Mock description
-});
 const fetchTags = async () => {
     const apiUrl = `${BACKEND_URL}/temples/tags?type=wish`;
 

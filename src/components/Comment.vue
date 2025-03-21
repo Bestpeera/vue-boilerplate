@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import Tag from './icons/Tag.vue';
 defineProps<{
     name: string;
     score: number;
     comment: string;
+    tag: object;
 }>();
 
 const stars = (score: number) => {
@@ -20,12 +22,15 @@ const stars = (score: number) => {
                 <span v-for="(star, index) in stars(score)" :key="index">{{ star }}</span>
             </div>
         </div>
+        <div class="flex items-center justify-between">
+            <Tag :icon_img_url="tag.image_url" :text="tag.name" bg_color="bg-purple-350" />
+        </div>
         <p class="text-gray-700 mt-2">{{ comment }}</p>
-        <div class="flex justify-between mt-4">
+        <!-- <div class="flex justify-between mt-4">
             <button class="flex items-center bg-pink-300 text-white px-4 py-2 rounded-lg">
                 <span class="mr-2">💡</span> ชอบ
             </button>
-        </div>
+        </div> -->
     </div>
 </template>
 
