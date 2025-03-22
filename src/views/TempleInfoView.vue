@@ -8,7 +8,7 @@
         </div>
 
         <!-- Image list -->
-        <div v-for="(imageUrl, index) in templeData.temple_image_urls" :key="index">
+        <div v-for="(imageUrl, index) in templeData.temple_image_urls" :key="index" class="flex justify-center">
             <img class="rounded-[14px]" :src="imageUrl" alt="Temple Image" />
         </div>
 
