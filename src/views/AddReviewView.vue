@@ -7,7 +7,7 @@
             <h1 class="text-md font-bold text-text-1000">เลือกหมวดหมู่พรที่เกี่ยวกับเรื่องราว</h1>
             <div class="flex flex-wrap gap-4 p-4 justify-center">
                 <Tag v-for="tag in tags" :key="tag.name" :icon_img_url="tag.image_url" :text="tag.name"
-                    bg_color="bg-purple-350" :class="{ 'border-2 border-secondary': selectedTag === tag.name }"
+                    bg_color="bg-purple-350" :class="{ 'border-2 border-purple-400': selectedTag === tag.name }"
                     @click="selectTag(tag.name)" />
             </div>
             <RatingBar />
